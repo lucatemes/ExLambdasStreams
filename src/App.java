@@ -35,21 +35,29 @@ public class App {
         
         System.out.println("1. Funcionários do setor de vendas:");
         lista.stream().filter(p->p.getDpto() == Departamento.VENDAS).forEach(System.out:: println);
+        
         System.out.println("2. Funcionários do setor de vendas com idade entre 20 e 30 anos");
         lista.stream().filter(p->(p.getIdade() > 19 && p.getIdade() < 31) && p.getDpto() == Departamento.VENDAS).forEach(System.out :: println);;
+        
         System.out.println("3. Nomes (em maiúsculas) dos funcionários do setor de vendas (usando reduce");
         lista.stream().filter(p->p.getDpto() == Departamento.VENDAS).map(p->p.getNome().toUpperCase()).forEach(System.out :: println);
+        
         System.out.println("4. Todos os gerentes:");
         lista.stream().filter(p->p.getDpto() == Departamento.GERENCIA).forEach(System.out:: println);
+        
         System.out.println("5. Idade média dos gerentes:");
         System.out.println(lista.stream().filter(p->p.getDpto() == Departamento.VENDAS).mapToInt(p->p.getIdade()).average());
+        
         System.out.println("6. Funcionarios ordenados pelo código:");
         lista.stream().sorted(Comparator.comparing(Pessoa::getCodigo)).forEach(System.out::println);
+        
         System.out.println("7. Funcionários ordenados pela idade+nome:");
         lista.stream().sorted(Comparator.comparing(Pessoa::getNome).thenComparing(Pessoa::getIdade)).forEach(System.out::println);
+        
         System.out.println("8. Criar uma nova lista apenas com os funcionarios do financeiro:");
         List<Pessoa> lista2= lista.stream().filter(p->p.getDpto() == Departamento.FINANCEIRO).collect(Collectors.toList());
         System.out.println(lista2);
+        
         System.out.println("9. Nome e setor da pessoa mais jovem:");
         lista.stream().sorted(Comparator.comparing(Pessoa::getIdade)).limit(1).map(p->p.getNome() + " - " + p.getIdade()).forEach(System.out::println);
 
